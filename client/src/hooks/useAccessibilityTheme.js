@@ -3,15 +3,18 @@ import useAuthStore from "@/store/useAuthStore";
 export default function useAccessibilityTheme() {
   const { accessibility } = useAuthStore();
 
-  const styles = {
-    fontSize:
-      accessibility.fontScale === "large"
-        ? "20px"
-        : accessibility.fontScale === "xl"
-          ? "24px"
-          : "16px",
-    filter: accessibility.contrast === "high" ? "contrast(150%)" : "none",
-  };
+  const classes = [
+    accessibility.fontScale === "large" && "text-lg",
+    accessibility.fontScale === "xl" && "text-xl",
 
-  return styles;
+    accessibility.contrast === "high" && "contrast-125 brightness-110",
+
+    accessibility.dyslexiaFont && "tracking-wide",
+
+    accessibility.reduceMotion && "motion-reduce",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return classes;
 }
