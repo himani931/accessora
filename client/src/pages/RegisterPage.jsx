@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AccessibilitySelector from "@/components/accessibility/AccessibilitySelector";
 import MainLayout from "@/layouts/MainLayout";
 import useAuthStore from "@/store/useAuthStore";
+import { Link } from "react-router-dom";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -75,6 +76,12 @@ export default function RegisterPage() {
           >
             Create Account
           </button>
+          <p className="mt-6 text-center text-sm text-slate-400">
+            Already have an account?{" "}
+            <Link to="/login" className="text-cyan-400">
+              Login
+            </Link>
+          </p>
         </div>
       </div>
     </MainLayout>

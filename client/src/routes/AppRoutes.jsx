@@ -10,14 +10,17 @@ import TransportPage from "@/pages/TransportPage";
 import ProfilePage from "@/pages/ProfilePage";
 import NotFoundPage from "@/pages/NotFoundPage";
 import ProtectedRoute from "./ProtectedRoute";
+import QuizPage from "@/pages/QuizPage";
 
 export default function AppRoutes() {
   return (
     <Routes>
+      {/* Public */}
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
 
+      {/* Protected */}
       <Route
         path="/dashboard"
         element={
@@ -27,10 +30,51 @@ export default function AppRoutes() {
         }
       />
 
-      <Route path="/learn" element={<LearnPage />} />
-      <Route path="/jobs" element={<JobsPage />} />
-      <Route path="/transport" element={<TransportPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
+      <Route
+        path="/learn"
+        element={
+          <ProtectedRoute>
+            <LearnPage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/jobs"
+        element={
+          <ProtectedRoute>
+            <JobsPage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/transport"
+        element={
+          <ProtectedRoute>
+            <TransportPage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/quiz"
+        element={
+          <ProtectedRoute>
+            <QuizPage />
+          </ProtectedRoute>
+        }
+      />
+
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

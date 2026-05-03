@@ -1,0 +1,32 @@
+export const jobs = [
+  {
+    id: 1,
+    title: "Frontend Developer",
+    company: "Microsoft",
+    location: "Remote",
+    salary: "₹12–20 LPA",
+    type: "Full Time",
+    match: 95,
+    accessible: ["Screen Reader Friendly", "Remote", "Flexible Hours"],
+  },
+  {
+    id: 2,
+    title: "UI Designer",
+    company: "Google",
+    location: "Hybrid",
+    salary: "₹15–28 LPA",
+    type: "Full Time",
+    match: 88,
+    accessible: ["Caption Support", "Accessible Workspace"],
+  },
+  {
+    id: 3,
+    title: "Backend Engineer",
+    company: "Adobe",
+    location: "Remote",
+    salary: "₹18–30 LPA",
+    type: "Full Time",
+    match: 91,
+    accessible: ["Remote", "Flexible Schedule", "Assistive Tech Support"],
+  },
+];

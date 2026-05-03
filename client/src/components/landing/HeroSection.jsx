@@ -1,14 +1,17 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
+import useAuthStore from "@/store/useAuthStore";
 
 export default function HeroSection() {
+  const { user, token } = useAuthStore();
+  const isLoggedIn = !!(user || token);
+
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6">
-      {/* background blobs */}
       <div className="absolute left-20 top-20 h-72 w-72 rounded-full bg-cyan-500/20 blur-[120px]" />
       <div className="absolute right-20 bottom-20 h-72 w-72 rounded-full bg-indigo-500/20 blur-[120px]" />
 
-      {/* floating orb */}
       <motion.div
         animate={{ y: [0, -25, 0] }}
         transition={{ repeat: Infinity, duration: 4 }}
@@ -39,14 +42,26 @@ export default function HeroSection() {
             differently-abled individuals.
           </p>
 
-          <div className="mt-10 flex justify-center gap-5">
-            <button className="rounded-2xl bg-indigo-500 px-7 py-4 font-semibold transition hover:scale-105 hover:bg-indigo-600">
-              Explore Platform
-            </button>
+          {isLoggedIn && (
+            <p className="mt-5 text-cyan-400 text-lg font-medium">
+              Welcome back, {user?.name}
+            </p>
+          )}
 
-            <button className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/10 px-7 py-4 backdrop-blur-xl transition hover:scale-105">
-              Watch Demo <ArrowRight size={18} />
-            </button>
+          <div className="mt-10 flex justify-center gap-5">
+            <Link
+              to={isLoggedIn ? "/dashboard" : "/register"}
+              className="rounded-2xl bg-indigo-500 px-7 py-4 font-semibold transition hover:scale-105 hover:bg-indigo-600"
+            >
+              {isLoggedIn ? "Go to Dashboard" : "Get Started"}
+            </Link>
+
+            <Link
+              to="/learn"
+              className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/10 px-7 py-4 backdrop-blur-xl transition hover:scale-105"
+            >
+              Explore Platform <ArrowRight size={18} />
+            </Link>
           </div>
         </motion.div>
       </div>
